@@ -1,25 +1,40 @@
 alert('Grundschulmathe')
 
 
-
-for (i = 0; i < 10; i++) {
-const RandomNumber = () => Math.floor(Math.random()*20) + 1;  
+const RandomNumber = (max) => Math.floor(Math.random() * max) + 1;
 
 
-    const number1 = RandomNumber()
-    const number2 = RandomNumber()
+function askAdditionTask(mathFn, operatorLiteral) {
+    const number1 = RandomNumber(20);
+    const number2 = RandomNumber(20);
 
+    const result = mathFn(number1 , number2);
 
-    const result = number1 + number2;
+    const userInput = parseInt(
+        prompt(`Bitte geben Sie die Lösung aus  ${number1} ${operatorLiteral} ${number2} ein.`),
+        10
+    );
 
-    const userInput = prompt('Bitte geben Sie die Lösung aus ' + number1 + ' + ' + number2 + ' ein.' );
 
     
+    if (userInput === result) {
+        points++;
 
-    if (userInput == result) {
-        alert('Richtig ')
+        alert('Richtig ' + points + '/5');
     }
     else {
-        alert('Leider falsch ')
+        alert('Leider falsch ' + points + '/5');
     }
 }
+
+var i = 0;
+var points = 0;
+
+for (i = 0; i < 5; i++) {
+
+    askAdditionTask((a,b) => {return a+b}, '+');
+
+}
+
+
+
